@@ -1,9 +1,10 @@
 import baza
 import sqlite3
 
-conn = sqlite3.connect('trgovina2.sdb')
+conn = sqlite3.connect('trgovina4.sdb')
 baza.ustvari_bazo_ce_ne_obstaja(conn)
 conn.execute('PRAGMA foreign_keys = ON')
+conn.execute("PRAGMA encoding = 'UTF-8'")
 
 # def commit(fun):
 #     """

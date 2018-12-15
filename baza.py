@@ -24,8 +24,6 @@ def ustvari_tabele(conn):
     naslov          VARCHAR NOT NULL,
     ime             VARCHAR NOT NULL
                             UNIQUE,
-    prezime             VARCHAR NOT NULL
-                            UNIQUE,
     kontaktna_oseba VARCHAR
 
         );
@@ -80,7 +78,53 @@ def ustvari_tabele(conn):
         )
     """)
 
-    
+def uvozi_kategorije(conn):
+    """
+    Uvozi podatke o kategorijah ur.
+    """
+    conn.execute("DELETE FROM kategorija;")
+    with open('podatki/kategorije.csv') as datoteka:
+        podatki = csv.reader(datoteka)
+        stolpci = next(podatki)
+        poizvedba = """
+            INSERT INTO kategorija VALUES ({})
+        """.format(', '.join(["?"] * len(stolpci)))
+        for vrstica in podatki:
+            conn.execute(poizvedba, vrstica)
+
+def uvozi_kupce(conn):
+    """
+    Uvozi podatke o kupcih.
+    """
+    conn.execute("DELETE FROM kupec;")
+    with open('podatki/kupci.csv') as datoteka:
+        podatki = csv.reader(datoteka)
+        stolpci = next(podatki)
+        poizvedba = """
+            INSERT INTO kupec VALUES ({})
+        """.format(', '.join(["?"] * len(stolpci)))
+        for vrstica in podatki:
+            conn.execute(poizvedba, vrstica)
+
+
+def uvozi_status(conn):
+    """
+    Uvozi podatke o statusih.
+    """
+    conn.execute("DELETE FROM status;")
+    with open('podatki/status.csv') as datoteka:
+        #print("ucitao csv podatke")
+        podatki = csv.reader(datoteka)
+        stolpci = next(podatki)
+        poizvedba = """
+            INSERT INTO status VALUES ({})
+        """.format(', '.join(["?"] * len(stolpci)))
+        for vrstica in podatki:
+            conn.execute(poizvedba, vrstica)
+
+
+
+    #TODO razmisli kako bi sastavio samo jednu funkciju za unos podataka?
 
 def ustvari_bazo(conn):
     """
@@ -88,9 +132,9 @@ def ustvari_bazo(conn):
     """
     pobrisi_tabele(conn)
     ustvari_tabele(conn)
-    # uvozi_filme(conn)
-    # uvozi_osebe(conn)
-    # uvozi_vloge(conn)
+    uvozi_kategorije(conn)
+    uvozi_kupce(conn)
+    uvozi_status(conn)
     # uvozi_zanre(conn)
 
 
