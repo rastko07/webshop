@@ -105,6 +105,7 @@ venv.bak/
 
 #SQLite databases
 *.db
+*.sdb
 *.sqlite3
 *.sqlite
 
