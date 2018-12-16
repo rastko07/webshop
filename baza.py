@@ -123,8 +123,53 @@ def uvozi_status(conn):
             conn.execute(poizvedba, vrstica)
 
 
+def uvozi_izdelek(conn):
+    """
+    Uvozi podatke o izdelkih.
+    """
+    conn.execute("DELETE FROM izdelek;")
+    with open('podatki/izdelek.csv') as datoteka:
+        #print("ucitao csv podatke")
+        podatki = csv.reader(datoteka)
+        stolpci = next(podatki)
+        poizvedba = """
+            INSERT INTO izdelek VALUES ({})
+        """.format(', '.join(["?"] * len(stolpci)))
+        for vrstica in podatki:
+            conn.execute(poizvedba, vrstica)
 
-    #TODO razmisli kako bi sastavio samo jednu funkciju za unos podataka?
+def uvozi_narocilo(conn):
+    """
+    Uvozi podatke o naročilih.
+    """
+    conn.execute("DELETE FROM narocilo;")
+    with open('podatki/narocilo.csv') as datoteka:
+        #print("ucitao csv podatke")
+        podatki = csv.reader(datoteka)
+        stolpci = next(podatki)
+        poizvedba = """
+            INSERT INTO narocilo VALUES ({})
+        """.format(', '.join(["?"] * len(stolpci)))
+        for vrstica in podatki:
+            conn.execute(poizvedba, vrstica)
+
+def uvozi_narocilo_vsebuje_izdelek(conn):
+    """
+    Uvozi podatke o naročilih.
+    """
+    conn.execute("DELETE FROM narocilo_vsebuje_izdelek;")
+    with open('podatki/narocilo_vsebuje_izdelek.csv') as datoteka:
+        #print("ucitao csv podatke")
+        podatki = csv.reader(datoteka)
+        stolpci = next(podatki)
+        poizvedba = """
+            INSERT INTO narocilo_vsebuje_izdelek VALUES ({})
+        """.format(', '.join(["?"] * len(stolpci)))
+        for vrstica in podatki:
+            conn.execute(poizvedba, vrstica)
+
+
+    #TODO razmisli kako bi sastavio samo jednu (ili manje) funkciju za unos podataka?
 
 def ustvari_bazo(conn):
     """
@@ -135,7 +180,9 @@ def ustvari_bazo(conn):
     uvozi_kategorije(conn)
     uvozi_kupce(conn)
     uvozi_status(conn)
-    # uvozi_zanre(conn)
+    uvozi_izdelek(conn)
+    uvozi_narocilo(conn)
+    uvozi_narocilo_vsebuje_izdelek(conn)
 
 
 def ustvari_bazo_ce_ne_obstaja(conn):
