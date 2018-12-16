@@ -30,27 +30,21 @@ def ustvari_tabele(conn):
     """)
     conn.execute("""
         CREATE TABLE kategorija (
-    id_kategorija INTEGER PRIMARY KEY AUTOINCREMENT
-                          NOT NULL
-                          UNIQUE,
+    id_kategorija INTEGER PRIMARY KEY AUTOINCREMENT,
     ime           VARCHAR NOT NULL
         );
     """)
 
     conn.execute("""
         CREATE TABLE status (
-    id_status INTEGER PRIMARY KEY AUTOINCREMENT
-                          NOT NULL
-                          UNIQUE,
+    id_status INTEGER PRIMARY KEY AUTOINCREMENT,
     naziv_statusa           VARCHAR NOT NULL
         );
     """)
 
     conn.execute("""
         CREATE TABLE narocilo (
-    id_narocilo INTEGER PRIMARY KEY AUTOINCREMENT
-                          NOT NULL
-                          UNIQUE,
+    id_narocilo INTEGER PRIMARY KEY AUTOINCREMENT,
     datum           DATETIME NOT NULL,
     rok_placila           DATETIME NOT NULL,
     kupec_id_kupec REFERENCES kupec(id_kupec),
@@ -60,7 +54,7 @@ def ustvari_tabele(conn):
 
     conn.execute("""
         CREATE TABLE izdelek (
-            id_izdelek INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+            id_izdelek INTEGER PRIMARY KEY AUTOINCREMENT,
             opis VARCHAR,
             zaloga INTEGER NOT NULL,
             cena DOUBLE NOT NULL,
@@ -70,7 +64,7 @@ def ustvari_tabele(conn):
 
     conn.execute("""
         CREATE TABLE narocilo_vsebuje_izdelek (
-            id_narocilo_vsebuje_izdelek INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+            id_narocilo_vsebuje_izdelek INTEGER PRIMARY KEY AUTOINCREMENT,
             kolicina INTEGER NOT NULL,
             popust DOUBLE,
             izdelek_id_izdelek REFERENCES izdelek(id_izdelek),
