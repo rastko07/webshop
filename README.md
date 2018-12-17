@@ -7,14 +7,13 @@ Avtorja:
 ## Opis
 
 TODO: napiši opis projekta
-(1) Funkcionalna spletna ki vodi evidenco naročil, ter bi naj bila osnova za realen projekt
+(1) Funkcionalna spletna trgovina
 (2) ER diagram v obliki PNG (izvozi iz dia)
 (3) Uporabnik lahko:  
     
 * Naroči izdelek
-* Oceni izdelek
-* Nujna dostava
-* Vnese protožbe/reklamacije na izdelek
+* Vnese naročilo
+* Administrator lahko spremlja promet denarja
 * Dodatne funkcionalnosti ki bi bile uporabne
 
 
