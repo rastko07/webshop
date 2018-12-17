@@ -7,9 +7,7 @@ Avtorja:
 ## Opis
 
 TODO: napiši opis projekta
-(1) Funkcionalna spletna trgovina
-(2) ER diagram v obliki PNG (izvozi iz dia)
-(3) Uporabnik lahko:  
+(1) Funkcionalna spletna trgovina iz obeh straneh, prodajalca in kupca (razmislek, wholesale izdelki ali retail) (2) Uporabnik lahko:  
     
 * Naroči izdelek
 * Vnese naročilo
