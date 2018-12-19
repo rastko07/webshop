@@ -85,7 +85,7 @@ def izberi_izdelek():
 
 # 3) Naročila
 # TODO Implement to the end
-def prikazi_podatke_narocil():
+""" def prikazi_podatke_narocil():
     id_narocila = izberi_narocilo()
     if id_narocila is None:
         print('Nobeno narocilo ne ustreza iskalnemu nizu.')
@@ -118,7 +118,7 @@ def izberi_narocilo():
     return None if izbira is None else idji_narocil[izbira]
 
 
-
+ """
 
 def pokazi_moznosti():
     print(50 * '-')
