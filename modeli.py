@@ -124,52 +124,54 @@ def podatki_izdelka(id_izdelka):
         kategorija = cur.fetchone()
        
         return opis, zaloga, cena, kategorija
+# TODO implementiraj naročila
 
-
-def podatki_narocil(idji_narocil):
+""" def podatki_narocil(idji_narocil):
     """
-    Vrne osnovne podatke vseh izdelkih z danimi IDji.
+    #Vrne osnovne podatke vseh izdelkih z danimi IDji.
 
-    >>> podatki_filmov([79470, 71853])
-    [(71853, 'Monty Python and the Holy Grail', 1975), (79470, 'Life of Brian', 1979)]
+    #>>> podatki_filmov([79470, 71853])
+    #[(71853, 'Monty Python and the Holy Grail', 1975), (79470, 'Life of Brian', 1979)]
     """
     poizvedba = """
-        SELECT id_narocilo, kupec.ime
-        FROM narocilo
-        WHERE id_narocilo IN ({})
+        #SELECT id_narocilo, kupec.ime
+        #FROM narocilo
+         #   JOIN kupec ON kupec_id_kupec = kupec.id_kupec
+        #WHERE id_narocilo IN ({})
     """.format(', '.join(len(idji_narocil) * ['?']))
     return conn.execute(poizvedba, idji_narocil).fetchall()
 
 
 def poisci_narocila(niz):
+    print("datume je: "+niz)
     """
-    Funkcija, ki vrne šifre vseh filmov, katerih naslov vsebuje dani niz.
+    #Funkcija, ki vrne šifre vseh filmov, katerih naslov vsebuje dani niz.
 
-    >>> poisci_filme('potter')
-    [241527, 295297, 304141, 330373, 373889, 417741, 926084, 1201607]
+    #>>> poisci_filme('potter')
+    #[241527, 295297, 304141, 330373, 373889, 417741, 926084, 1201607]
     """
     poizvedba = """
-        SELECT id_narocilo
-        FROM narocilo
-        WHERE datum = ?
+        #SELECT id_narocilo
+        #FROM narocilo
+        #WHERE datum = ?
     """
-    return [id_narocila for (id_narocila,) in conn.execute(poizvedba, ['%' + niz + '%'])]
+    return [id_narocila for (id_narocila,) in conn.execute(poizvedba, [niz])]
 
 
 def podatki_narocila(id_narocila):
     """
-    Vrne podatke o konkretnom izdelku z danim IDjem.
+    #Vrne podatke o konkretnom izdelku z danim IDjem.
 
-    >>> podatki_filma(71853)
-    ('Monty Python and the Holy Grail', 1975, 91, 8.3, ['Comedy', 'Fantasy', 'Adventure'],
-     [(92, 'igralec'), (416, 'igralec'), (416, 'reziser'), (1037, 'igralec'), (1385, 'igralec'), (1402, 'reziser')])
+    #>>> podatki_filma(71853)
+    #('Monty Python and the Holy Grail', 1975, 91, 8.3, ['Comedy', 'Fantasy', 'Adventure'],
+     #[(92, 'igralec'), (416, 'igralec'), (416, 'reziser'), (1037, 'igralec'), (1385, 'igralec'), (1402, 'reziser')])
     """
     poizvedba = """
-        SELECT id_narocilo, datum, rok_placila, kupec.ime, status.naziv_statusa
-        FROM narocilo
-            JOIN kupec ON kupec_id_kupec = kupec.id_kupec
-            JOIN status ON status_id_status = status.id_status
-        WHERE id_narocilo = ?
+        #SELECT id_narocilo, datum, rok_placila, kupec.ime, status.naziv_statusa
+        #FROM narocilo
+            #JOIN kupec ON kupec_id_kupec = kupec.id_kupec
+            #JOIN status ON status_id_status = status.id_status
+        #WHERE id_narocilo = ?
     """
     cur = conn.cursor()
     cur.execute(poizvedba, [id_narocila])
@@ -179,15 +181,15 @@ def podatki_narocila(id_narocila):
     else:
         id_narocilo, datum, rok_placila, kupec, status = osnovni_podatki
         poizvedba_za_izdelke = """
-            SELECT izdelek.opis, izdelek.cena, kolicina, popust
-            FROM narocilo_vsebuje_izdelek
-                JOIN izdelek ON izdelek_id_izdelek = izdelek.id_izdelek
-            WHERE narocilo_id_narocilo = ?
+            #SELECT izdelek.opis, izdelek.cena, kolicina, popust
+            #FROM narocilo_vsebuje_izdelek
+                #JOIN izdelek ON izdelek_id_izdelek = izdelek.id_izdelek
+            #WHERE narocilo_id_narocilo = ?
         """
-        cur.execute(poizvedba_za_izdelke, id_narocila)
+        cur.execute(poizvedba_za_izdelke, [id_narocila]) # list, not tuple
         izdelki = cur.fetchall()
        
-        return id_narocilo, datum, rok_placila, kupec, status, izdelki
+        return id_narocilo, datum, rok_placila, kupec, status, izdelki """
 
 # def commit(fun):
 #     """

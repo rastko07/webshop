@@ -68,7 +68,7 @@ def ustvari_tabele(conn):
             kolicina INTEGER NOT NULL,
             popust DOUBLE,
             izdelek_id_izdelek REFERENCES izdelek(id_izdelek),
-            narocilo_id_narocilo REFERENCES narocilo(id_narocilo)
+            narocilo_id_narocilo INTEGER REFERENCES narocilo(id_narocilo)
         )
     """)
 

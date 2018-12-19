@@ -84,6 +84,7 @@ def izberi_izdelek():
 
 
 # 3) Naročila
+# TODO Implement to the end
 def prikazi_podatke_narocil():
     id_narocila = izberi_narocilo()
     if id_narocila is None:
@@ -97,6 +98,7 @@ def prikazi_podatke_narocil():
         print('  status placila: {}'.format(status))
         print('  Izdelki:')
         for izdelek in izdelki:
+            print("**********************************************")
             print('         Naziv izdelka: {}'.format(izdelek[0])) # Naziv izdelka povlečen
             print('         Cena izdelka: {}'.format(izdelek[1])) # Naziv izdelka povlečen
             print('         Količina izdelka: {}'.format(izdelek[2])) # Naziv izdelka povlečen
@@ -110,7 +112,7 @@ def izberi_narocilo():
     niz = input('Vnesite datum naročila (format: dd/mm/yyyy) > ')
     idji_narocil = modeli.poisci_narocila(niz)
     moznosti = [
-        'številka naročila: {} Kupec: {}'.format(id_narocila, kupec) for _, id_narocila, kupec in modeli.podatki_narocil(idji_narocil)
+        'številka naročila: {} Kupec: {}'.format(id_narocila, kupec) for id_narocila, kupec in modeli.podatki_narocil(idji_narocil)
     ]
     izbira = izberi_moznost(moznosti)
     return None if izbira is None else idji_narocil[izbira]
@@ -123,7 +125,7 @@ def pokazi_moznosti():
     izbira = izberi_moznost([
         'prikaži podatke kupca',
         'prikaži podatke o izdelku',
-        'prikaži podatke o narocilu',
+        #'prikaži podatke o narocilu',
         # 'dodaj vlogo osebe v filmu',
         # 'prikaži najboljše filme posameznega desetletja',
         # 'dodaj film',
@@ -136,8 +138,8 @@ def pokazi_moznosti():
         prikazi_podatke_kupcev()
     elif izbira == 1:
         prikazi_podatke_izdelkov()
-    elif izbira == 2:
-        prikazi_podatke_narocil()
+    #elif izbira == 2:
+    #    prikazi_podatke_narocil()
     # elif izbira == 3:
     #     prikazi_najboljse_filme_desetletja()
     # elif izbira == 4:
