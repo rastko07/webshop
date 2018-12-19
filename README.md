@@ -6,7 +6,6 @@ Avtorja:
 
 ## Opis
 
-TODO: napiši opis projekta
 (1) Funkcionalna spletna trgovina iz obeh straneh, prodajalca in kupca (razmislek, wholesale izdelki ali retail) (2) Uporabnik lahko:  
     
 * Naroči izdelek
