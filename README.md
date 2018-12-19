@@ -15,7 +15,6 @@ TODO: napiši opis projekta
 * Dodatne funkcionalnosti ki bi bile uporabne
 
 
-TODO: Prilagodi diagram bazi
 Spletna trgovina ročnih ur
 ![alt text](https://github.com/rastko07/webshop/blob/master/spletna_trgovina_diagram.png)
 
