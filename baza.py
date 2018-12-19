@@ -171,6 +171,7 @@ def ustvari_bazo(conn):
     """
     pobrisi_tabele(conn)
     ustvari_tabele(conn)
+    # Uvoz podatkov
     uvozi_kategorije(conn)
     uvozi_kupce(conn)
     uvozi_status(conn)

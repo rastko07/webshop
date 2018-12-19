@@ -53,7 +53,7 @@ def prikazi_podatke_kupcev():
       
 
 def izberi_kupca():
-    niz = input('Vnesite del imena kupcev > ')
+    niz = input('Vnesite del imena kupca > ')
     idji_kupcev = modeli.poisci_kupca(niz)
     moznosti = [
         '{} ***{}***'.format(ime, naslov) for _, ime, naslov in modeli.podatki_kupcev(idji_kupcev)
@@ -85,40 +85,40 @@ def izberi_izdelek():
 
 # 3) Naročila
 # TODO Implement to the end
-""" def prikazi_podatke_narocil():
-    id_narocila = izberi_narocilo()
-    if id_narocila is None:
-        print('Nobeno narocilo ne ustreza iskalnemu nizu.')
-    else:
-        id_narocilo, datum, rok_placila, kupec, status, izdelki = modeli.podatki_narocila(id_narocila)
-        print('  Stevilka narocila {}'.format(id_narocilo))
-        print('  datum: {}'.format(datum))
-        print('  rok placila: {}'.format(rok_placila))
-        print('  kupec: {}'.format(kupec))
-        print('  status placila: {}'.format(status))
-        print('  Izdelki:')
-        for izdelek in izdelki:
-            print("**********************************************")
-            print('         Naziv izdelka: {}'.format(izdelek[0])) # Naziv izdelka povlečen
-            print('         Cena izdelka: {}'.format(izdelek[1])) # Naziv izdelka povlečen
-            print('         Količina izdelka: {}'.format(izdelek[2])) # Naziv izdelka povlečen
-            print('         Popust na izdelek: {}%'.format(izdelek[3]*100)) # Naziv izdelka povlečen
+#""" def prikazi_podatke_narocil():
+  #  id_narocila = izberi_narocilo()
+   # if id_narocila is None:
+    #    print('Nobeno narocilo ne ustreza iskalnemu nizu.')
+    #else:
+     #   id_narocilo, datum, rok_placila, kupec, status, izdelki = modeli.podatki_narocila(id_narocila)
+      #  print('  Stevilka narocila {}'.format(id_narocilo))
+       # print('  datum: {}'.format(datum))
+        #print('  rok placila: {}'.format(rok_placila))
+        #print('  kupec: {}'.format(kupec))
+        #print('  status placila: {}'.format(status))
+        #print('  Izdelki:')
+        #for izdelek in izdelki:
+         #   print("**********************************************")
+          #  print('         Naziv izdelka: {}'.format(izdelek[0])) # Naziv izdelka povlečen
+           # print('         Cena izdelka: {}'.format(izdelek[1])) # Naziv izdelka povlečen
+            #print('         Količina izdelka: {}'.format(izdelek[2])) # Naziv izdelka povlečen
+            #print('         Popust na izdelek: {}%'.format(izdelek[3]*100)) # Naziv izdelka povlečen
 
 
 
 
 
-def izberi_narocilo():
-    niz = input('Vnesite datum naročila (format: dd/mm/yyyy) > ')
-    idji_narocil = modeli.poisci_narocila(niz)
-    moznosti = [
-        'številka naročila: {} Kupec: {}'.format(id_narocila, kupec) for id_narocila, kupec in modeli.podatki_narocil(idji_narocil)
-    ]
-    izbira = izberi_moznost(moznosti)
-    return None if izbira is None else idji_narocil[izbira]
+#def izberi_narocilo():
+    #niz = input('Vnesite datum naročila (format: dd/mm/yyyy) > ')
+    #idji_narocil = modeli.poisci_narocila(niz)
+    #moznosti = [
+    #    'številka naročila: {} Kupec: {}'.format(id_narocila, kupec) for id_narocila, kupec in modeli.podatki_narocil(idji_narocil)
+    #]
+    #izbira = izberi_moznost(moznosti)
+    #return None if izbira is None else idji_narocil[izbira]
 
 
- """
+ #"""
 
 def pokazi_moznosti():
     print(50 * '-')
@@ -127,8 +127,8 @@ def pokazi_moznosti():
         'prikaži podatke o izdelku',
         #'prikaži podatke o narocilu',
         # 'dodaj vlogo osebe v filmu',
-        # 'prikaži najboljše filme posameznega desetletja',
-        # 'dodaj film',
+         #'prikaži najboljše filme posameznega desetletja',
+         #'dodaj film',
         'izhod',
     ])
 
