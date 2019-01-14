@@ -77,7 +77,7 @@ def uvozi_kategorije(conn):
     Uvozi podatke o kategorijah ur.
     """
     conn.execute("DELETE FROM kategorija;")
-    with open('podatki/kategorije.csv') as datoteka:
+    with open('podatki/kategorije.csv', encoding='UTF-8') as datoteka:
         podatki = csv.reader(datoteka)
         stolpci = next(podatki)
         poizvedba = """
@@ -91,7 +91,7 @@ def uvozi_kupce(conn):
     Uvozi podatke o kupcih.
     """
     conn.execute("DELETE FROM kupec;")
-    with open('podatki/kupci.csv') as datoteka:
+    with open('podatki/kupci.csv', encoding='UTF-8') as datoteka: # TODO dodaj encoding
         podatki = csv.reader(datoteka)
         stolpci = next(podatki)
         poizvedba = """
