@@ -109,3 +109,5 @@ venv.bak/
 *.sqlite3
 *.sqlite
 
+# Temporary files
+*~
