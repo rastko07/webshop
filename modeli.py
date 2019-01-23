@@ -6,6 +6,51 @@ baza.ustvari_bazo_ce_ne_obstaja(conn)
 conn.execute('PRAGMA foreign_keys = ON')
 conn.execute("PRAGMA encoding = 'UTF-8'")
 
+def trenutna_kategorija(param_id_kategorija):
+    """
+    Vrne kategorijo glede na podan ID
+    """
+    poizvedba = """
+                SELECT ime
+                FROM kategorija
+                WHERE id_kategorija=?
+
+                """
+    
+    cur = conn.cursor()
+    return cur.execute(poizvedba, [param_id_kategorija]).fetchone()
+
+
+def mozne_ure(param_id_kategorija):
+    """
+    Vrne možne ure, glede na kategorijo
+    
+    """
+    poizvedba = """
+        SELECT opis, zaloga, cena
+        FROM izdelek
+        WHERE kategorija_id_kategorija = ?
+        ORDER BY opis
+    """
+    cur = conn.cursor()
+    return cur.execute(poizvedba, [param_id_kategorija]).fetchall() # Nađi grešku
+
+
+
+def mozne_kategorije():
+    """
+    Vrne možne kategorije ur v bazi
+    
+    """
+    poizvedba = """
+        SELECT ime, id_kategorija
+        FROM kategorija
+        ORDER BY ime
+    """
+    return conn.execute(poizvedba).fetchall()
+
+
+
 def poisci_kupca(niz):
     """
     Funkcija, ki vrne šifre vseh filmov, katerih naslov vsebuje dani niz.
@@ -142,7 +187,7 @@ def podatki_izdelka(id_izdelka):
     #return conn.execute(poizvedba, idji_narocil).fetchall()
 
 
-#def poisci_narocila(niz):
+def poisci_narocila(niz):
     print("datume je: "+niz)
     """
     #Funkcija, ki vrne šifre vseh filmov, katerih naslov vsebuje dani niz.
@@ -191,21 +236,3 @@ def podatki_izdelka(id_izdelka):
        
         #return id_narocilo, datum, rok_placila, kupec, status, izdelki 
 
-# def commit(fun):
-#     """
-#     Dekorator, ki ustvari kurzor, ga poda dekorirani funkciji,
-#     in nato zapiše spremembe v bazo.
-#     Originalna funkcija je na voljo pod atributom nocommit.
-#     """
-#     def funkcija(*largs, **kwargs):
-#         cur = conn.cursor()
-#         ret = fun(cur, *largs, **kwargs)
-#         conn.commit()
-#         cur.close()
-#         return ret
-#     funkcija.__doc__ = fun.__doc__
-#     funkcija.__name__ = fun.__name__
-#     funkcija.__qualname__ = fun.__qualname__
-#     fun.__qualname__ += '.nocommit'
-#     funkcija.nocommit = fun
-#     return funkcija

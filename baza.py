@@ -58,7 +58,7 @@ def ustvari_tabele(conn):
             opis VARCHAR,
             zaloga INTEGER NOT NULL,
             cena DOUBLE NOT NULL,
-            kategorija_id_kategorija REFERENCES kategorija(id_kategorija)
+            kategorija_id_kategorija INTEGER REFERENCES kategorija(id_kategorija)
         )
     """)
 
