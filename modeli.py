@@ -171,6 +171,54 @@ def podatki_izdelka(id_izdelka):
         return opis, zaloga, cena, kategorija
 # TODO implementiraj naročila
 
+def podatki_izdelka2(id_izdelka):
+    """
+    Vrne podatke o konkretnom izdelku z danim IDjem.
+
+    >>> podatki_filma(71853)
+    ('Monty Python and the Holy Grail', 1975, 91, 8.3, ['Comedy', 'Fantasy', 'Adventure'],
+     [(92, 'igralec'), (416, 'igralec'), (416, 'reziser'), (1037, 'igralec'), (1385, 'igralec'), (1402, 'reziser')])
+    """
+    poizvedba = """
+        SELECT opis, zaloga, cena, kategorija_id_kategorija
+        FROM izdelek
+        WHERE id_izdelek = ?
+    """
+    cur = conn.cursor()
+    cur.execute(poizvedba, [id_izdelka])
+    osnovni_podatki = cur.fetchone()
+    if osnovni_podatki is None:
+        return None
+    else:
+        opis, zaloga, cena, kategorija_id_kategorija = osnovni_podatki
+    return opis, zaloga, cena, kategorija_id_kategorija 
+
+#Test
+def podatki_izdelka3(id_izdelka):
+    """
+    Vrne podatke o konkretnom izdelku z danim IDjem.
+
+    >>> podatki_filma(71853)
+    ('Monty Python and the Holy Grail', 1975, 91, 8.3, ['Comedy', 'Fantasy', 'Adventure'],
+     [(92, 'igralec'), (416, 'igralec'), (416, 'reziser'), (1037, 'igralec'), (1385, 'igralec'), (1402, 'reziser')])
+    """
+    poizvedba = """
+        SELECT izdelek.opis, izdelek.zaloga, izdelek.cena, kategorija.ime
+        FROM izdelek JOIN kategorija ON izdelek.kategorija_id_kategorija = kategorija.id_kategorija
+        WHERE id_izdelek = ?
+    """
+    cur = conn.cursor()
+    cur.execute(poizvedba, [id_izdelka])
+    osnovni_podatki = cur.fetchone()
+    if osnovni_podatki is None:
+        return None
+    else:
+        opis, zaloga, cena, kategorija = osnovni_podatki
+        
+        return opis, zaloga, cena, kategorija
+
+
+
  #def podatki_narocil(idji_narocil):
    # """
     #Vrne osnovne podatke vseh izdelkih z danimi IDji.
