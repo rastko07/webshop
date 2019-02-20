@@ -1,5 +1,5 @@
 import modeli
-from bottle import get, template, run, request
+from bottle import get, template, run, request, post, redirect
 
 
 def url_ure(id):
@@ -53,6 +53,47 @@ def podatki_ure(id_ure):
         
 )
 
+@get('/dodaj_uro/')
+def dodaj_uro():
+   # if not prijavljen_uporabnik():
+     #   raise bottle.HTTPError(401)
+    kategorije = modeli.mozne_kategorije()
+    return template('dodaj_uro',
+                    opis="",
+                    zaloga="",
+                    cena="",
+                    kategorije="",
+                    vse_kategorije=kategorije,
+                    napaka=False)
+
+@post('/dodaj_uro/')
+def dodajanje_ure():
+    #if not prijavljen_uporabnik():
+        #raise bottle.HTTPError(401)
+    try:
+        print('Zašo u TRY')
+        print(request.forms.dict)
+        id = modeli.dodaj_uro(opis=request.forms.opis,
+                               zaloga=request.forms.zaloga,
+                               cena=request.forms.cena,
+                               kategorije=request.forms.kategorije)
+        
+                               
+                              # zanri=request.forms.getall('zanri'),
+                              
+                              # reziserji=request.forms.getall('reziserji'))
+    except:
+        kategorije = modeli.mozne_kategorije()
+        return template('dodaj_uro',
+                        opis=request.forms.opis,
+                               zaloga=request.forms.zaloga,
+                               cena=request.forms.cena,
+                               ocena=request.forms.ocena,
+                               kategorije=request.forms.kategorije,
+                               vse_kategorije=kategorije,
+                               napaka=True)
+    
+    redirect('/ura/{}/'.format(id))
 
 
 run(reloader=True,debug=True)

@@ -15,10 +15,11 @@
         </a>
     </li>
 % end
+<li><a href="dodaj_uro/">Dodaj uro</a></li>
 </ul>
  </div>
   </section>
-   
+
    
    
 

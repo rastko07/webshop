@@ -1,5 +1,7 @@
 import baza
 import sqlite3
+import hashlib
+import random
 
 conn = sqlite3.connect('trgovina5.db')
 baza.ustvari_bazo_ce_ne_obstaja(conn)
@@ -216,6 +218,17 @@ def podatki_izdelka3(id_izdelka):
         opis, zaloga, cena, kategorija = osnovni_podatki
         
         return opis, zaloga, cena, kategorija
+
+def dodaj_uro(opis, zaloga, cena, kategorije):
+    """
+    V bazo doda film ter podatke o njegovih žanrih, igralcih in režiserjih.
+    """
+    with conn:
+        id = conn.execute("""
+            INSERT INTO izdelek (opis, zaloga, cena, kategorija_id_kategorija)
+                            VALUES (?, ?, ?, ?)
+        """, [opis, zaloga, cena, kategorije]).lastrowid
+        return id
 
 
 
