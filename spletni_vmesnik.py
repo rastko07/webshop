@@ -1,6 +1,12 @@
 import modeli
-from bottle import get, template, run, request, post, redirect
+from bottle import get, template, run, request, post, redirect, response, HTTPError, static_file
+import hashlib
 
+SKRIVNOST = 'moja skrivnost'
+
+
+def prijavljen_uporabnik():
+    return request.get_cookie('prijavljen', secret=SKRIVNOST) == 'da'
 
 def url_ure(id):
     return 'ura/{}/'.format(id)
@@ -16,7 +22,8 @@ def glavna_stran():
     ]
     return template(
         'glavna_stran',
-        kategorije = kategorije)
+        kategorije = kategorije,
+        prijavljen=prijavljen_uporabnik())
 
 
 
@@ -55,8 +62,8 @@ def podatki_ure(id_ure):
 
 @get('/dodaj_uro/')
 def dodaj_uro():
-   # if not prijavljen_uporabnik():
-     #   raise bottle.HTTPError(401)
+    if not prijavljen_uporabnik():
+        raise HTTPError(401)
     kategorije = modeli.mozne_kategorije()
     return template('dodaj_uro',
                     opis="",
@@ -68,8 +75,8 @@ def dodaj_uro():
 
 @post('/dodaj_uro/')
 def dodajanje_ure():
-    #if not prijavljen_uporabnik():
-        #raise bottle.HTTPError(401)
+    if not prijavljen_uporabnik():
+        raise HTTPError(401)
     try:
         print('Zašo u TRY')
         print(request.forms.dict)
@@ -95,5 +102,36 @@ def dodajanje_ure():
     
     redirect('/ura/{}/'.format(id))
 
+@post('/prijava/')
+def prijava():
+    uporabnisko_ime = request.forms.uporabnisko_ime
+    geslo = request.forms.geslo
+    if modeli.preveri_geslo(uporabnisko_ime, geslo):
+        response.set_cookie(
+            'prijavljen', 'da', secret=SKRIVNOST, path='/')
+        redirect('/')
+    else:
+        raise HTTPError(403, "BOOM!")
+
+@get('/odjava/')
+def odjava():
+    response.set_cookie('prijavljen', '', path='/')
+    redirect('/')
+
+@post('/registracija/')
+def registracija():
+    uporabnisko_ime = request.forms.uporabnisko_ime
+    geslo = request.forms.geslo
+    if modeli.ustvari_uporabnika(uporabnisko_ime, geslo):
+        response.set_cookie(
+            'prijavljen', 'da', secret=SKRIVNOST, path='/')
+        redirect('/')
+    else:
+        raise HTTPError(
+                403, "Uporabnik s tem uporabniškim imenom že obstaja!") 
+
+@get('/static/<filename>')
+def staticna_datoteka(filename):
+    return static_file(filename, root='static')
 
 run(reloader=True,debug=True)

@@ -72,6 +72,14 @@ def ustvari_tabele(conn):
         )
     """)
 
+    conn.execute("""
+        CREATE TABLE uporabniki (
+            uporabnisko_ime  TEXT PRIMARY KEY,
+            geslo TEXT,
+            sol TEXT
+        );
+    """)
+
 def uvozi_kategorije(conn):
     """
     Uvozi podatke o kategorijah ur.

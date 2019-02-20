@@ -297,3 +297,36 @@ def poisci_narocila(niz):
        
         #return id_narocilo, datum, rok_placila, kupec, status, izdelki 
 
+# Geslo
+
+def zakodiraj(geslo, sol=None):
+    if sol is None:
+        sol = ''.join(chr(random.randint(65, 122)) for _ in range(16))
+    posoljeno_geslo = geslo + '$' + sol
+    zakodirano_geslo = hashlib.sha512(posoljeno_geslo.encode()).hexdigest()
+    return zakodirano_geslo, sol
+
+
+def preveri_geslo(uporabnisko_ime, geslo):
+    poizvedba = """
+        SELECT geslo, sol FROM uporabniki
+        WHERE uporabnisko_ime = ?
+    """
+    uporabnik = conn.execute(poizvedba, [uporabnisko_ime]).fetchone()
+    if uporabnik is None:
+        return False
+    shranjeno_geslo, sol = uporabnik
+    zakodirano_geslo, _ = zakodiraj(geslo, sol)
+    return shranjeno_geslo == zakodirano_geslo
+
+# Uprabnik 
+def ustvari_uporabnika(uporabnisko_ime, geslo):
+    poizvedba = """
+        INSERT INTO uporabniki
+        (uporabnisko_ime, geslo, sol)
+        VALUES (?, ?, ?)
+    """
+    with conn:
+        zakodirano_geslo, sol = zakodiraj(geslo)
+        conn.execute(poizvedba, [uporabnisko_ime, zakodirano_geslo, sol]).fetchone()
+        return True

@@ -15,11 +15,32 @@
         </a>
     </li>
 % end
-<li><a href="dodaj_uro/">Dodaj uro</a></li>
+
+% if get('prijavljen', False):
+    <li><a href="dodaj_uro/">Dodaj uro</a></li>
+    <li>
+        <a href="odjava/">Odjavi se</a>
+    </li>
+% end
 </ul>
  </div>
   </section>
 
+ 
+
+
+% if not get('prijavljen', False):
+<form action="prijava/" method="post">
+<input type="text" name="uporabnisko_ime" value="" />
+<input type="password" name="geslo" value="" />
+<input type="submit" value="Prijavi se">
+</form>
+<form action="registracija/" method="post">
+<input type="text" name="uporabnisko_ime" value="" />
+<input type="password" name="geslo" value="" />
+<input type="submit" value="Registriraj se">
+</form>
+% end
    
    
 
