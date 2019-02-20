@@ -6,12 +6,13 @@ Avtorja:
 
 ## Opis
 
-(1) Funkcionalna spletna trgovina iz obeh straneh, prodajalca in kupca (razmislek, wholesale izdelki ali retail) (2) Uporabnik lahko:  
-    
-* Naroči izdelek
-* Vnese naročilo
-* Administrator lahko spremlja promet denarja
-* Dodatne funkcionalnosti ki bi bile uporabne
+(1) Spletna trgovina ur:  
+   
+* Prikaz izdelkov skupaj s fotografijo izdelka
+* Prikaz izdelkov po kategorijah
+* Vnos novih izdelkov
+* Iskanje po bazi izdelkov
+* Registracija uporabnikov (Ločimo med aministratorji in uporabniki?)
 
 
 Spletna trgovina ročnih ur
