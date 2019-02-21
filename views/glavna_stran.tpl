@@ -11,7 +11,7 @@
 % for kategorija, url in kategorije:
     <li>
         <a href="{{ url }}">
-            Poglejte ure iz kategorije {{ kategorija }}
+            <div class="column notification is-primary">Poglejte ure iz kategorije {{ kategorija }}</div>
         </a>
     </li>
 % end
