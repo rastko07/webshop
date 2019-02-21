@@ -8,7 +8,7 @@ Poizvedba za niz '{{niz}}' je vrnila naslednje ure:
         
         <li>
             <a href="/ura/{{ id_ure }}/">
-                <strong>{{opis}}</strong>,{{cena}} €
+                <strong>{{opis}}</strong> {{cena}} €
             </a>
         </li>
 % end

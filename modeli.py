@@ -29,7 +29,7 @@ def mozne_ure(param_id_kategorija):
     
     """
     poizvedba = """
-        SELECT opis, zaloga, cena
+        SELECT id_izdelek, opis, zaloga, cena
         FROM izdelek
         WHERE kategorija_id_kategorija = ?
         ORDER BY opis

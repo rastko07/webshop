@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>Ura je cajt!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
@@ -19,7 +19,7 @@
   <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      &copy Rastko Veriš 2019
+      &copy Rastko Veriš, Borna Kavčič 2019
     </p>
   </div>
 </footer>
