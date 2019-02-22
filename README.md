@@ -12,7 +12,7 @@ Avtorja:
 * Prikaz izdelkov po kategorijah
 * Vnos novih izdelkov
 * Iskanje po bazi izdelkov
-* Registracija uporabnikov (Ločimo med aministratorji in uporabniki?)
+* Registracija uporabnikov
 
 
 Spletna trgovina ročnih ur
