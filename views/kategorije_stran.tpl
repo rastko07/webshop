@@ -1,4 +1,5 @@
 % rebase('osnova')
+br></br><br></br>
 <h1 class = "title">Ure v izbrani kategoriji {{kategorija}}<h1>
 <ul>
 % for id_ure, opis, kolicina, cena in ure:

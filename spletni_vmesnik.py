@@ -6,7 +6,7 @@ SKRIVNOST = 'moja skrivnost'
 
 
 def prijavljen_uporabnik():
-    return request.get_cookie('prijavljen', secret=SKRIVNOST) == 'da'
+    return request.get_cookie('prijavljen', secret=SKRIVNOST) == 'da' # Če želimo kupovanje, moramo pridobiti uporabniško ime
 
 def url_ure(id):
     return 'ura/{}/'.format(id)
